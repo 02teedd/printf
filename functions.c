@@ -3,8 +3,9 @@
 /**
  * print_char - prints a char
  * @types: list a of arguments
- * @buffer: Buffer array to handle proint
- * @flags: calculates active flags @widthL width
+ * @buffer: Buffer array to handle print
+ * @flags: calculates active flags
+ * @width: width
  * @precision: precision specification
  * @size: size specifier
  * @Return: number of chars printed
@@ -20,8 +21,8 @@ int print_char(va_list types, char buffer[],
  * print_string - prints a string 
  * @types: list a of arguments
  * @bufer: buffer array to handle print
- * @flags: calculates avtive flags
- * @width:get width
+ * @flags: calculates active flags
+ * @width: get width
  * @precision: precision specifications
  * @size: size specifier
  * Return: Number of chars printed
@@ -37,7 +38,6 @@ int print_string(va_list types, char buffer[],
 	UNUSED(width);
 	UNUSED(precision);
 	UNUSED(size);
-	if (str == NULL)
 	if (str == NULL)
 	{
 		str = "(null)";
@@ -55,7 +55,7 @@ int print_string(va_list types, char buffer[],
 	{
 		if (flags & F_MINUS)
 		{
-			write(1, &str[0], lenth);
+			write(1, &str[0], length);
 			for (i = width - length; i > 0; i--)
 				write(1, " ",1);
 			return (width);
@@ -130,6 +130,7 @@ int print_int(va_list  types, char buffer[],
 		buffer[i--] = (num % 10) + '0';
 		num /= 10;
 	}
+
 	i++;
 
 	return (write_number(is_negative, i, buffer, flags, width, precision, size));
@@ -142,8 +143,8 @@ int print_int(va_list  types, char buffer[],
  * @flags: calculates active flags
  * @width: get width
  * @precision: precision specification
- * @size: SIZE specifier
- * Return : Number of char printed
+ * @size: size specifier
+ * Return: Number of char printed
  */
 int print_binary(va_list types, char buffer[].
 		int flags, int width, int precision, int size)
